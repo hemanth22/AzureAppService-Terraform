@@ -29,7 +29,7 @@ resource "azurerm_app_service_plan" "svcplan" {
 }
 
 resource "azurerm_app_service" "myapp" {
-  name                = "dockerreactappservice222"
+  name                = "docsify-learn"
   location            = azurerm_resource_group.resource.location
   resource_group_name = azurerm_resource_group.resource.name
   app_service_plan_id = azurerm_app_service_plan.svcplan.id
@@ -38,11 +38,11 @@ resource "azurerm_app_service" "myapp" {
   site_config {
     linux_fx_version = "DOCKER|bitroid/lessonslearnt:v1"
     # registry_source="Docker Hub"
-
+    use_32_bit_worker_process = true
   }
     
 }
 
-output "id" {
-  value = azurerm_app_service_plan.svcplan.id
+output "URL" {
+  value = azurerm_app_service.myapp.default_site_hostname
 }
