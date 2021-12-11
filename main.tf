@@ -1,9 +1,17 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
 }
 resource "azurerm_resource_group" "resource" {
   name     = "appservice_docker"
-  location = "West Europe"
+  location = "westus"
 }
 
 resource "azurerm_app_service_plan" "svcplan" {
@@ -15,17 +23,9 @@ resource "azurerm_app_service_plan" "svcplan" {
   
 
   sku {
-    tier = "Standard"
-    size = "S1"
+    tier = "Free"
+    size = "F1"
   }
-}
-
-locals {
- env_variables = {
-   DOCKER_REGISTRY_SERVER_URL            = "URL"
-   DOCKER_REGISTRY_SERVER_USERNAME       = "USERNAME"
-   DOCKER_REGISTRY_SERVER_PASSWORD       = "PASSWORD"
- }
 }
 
 resource "azurerm_app_service" "myapp" {
