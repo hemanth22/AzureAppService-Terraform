@@ -40,7 +40,6 @@ resource "azurerm_app_service" "myapp" {
     # registry_source="Docker Hub"
 
   }
-    app_settings = local.env_variables
     
 }
 
