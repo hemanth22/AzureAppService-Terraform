@@ -33,9 +33,10 @@ resource "azurerm_app_service" "myapp" {
   location            = azurerm_resource_group.resource.location
   resource_group_name = azurerm_resource_group.resource.name
   app_service_plan_id = azurerm_app_service_plan.svcplan.id
+  https_only          = true
   
-
   site_config {
+    http2_enabled = true
     linux_fx_version = "DOCKER|bitroid/lessonslearnt:v1"
     # registry_source="Docker Hub"
     use_32_bit_worker_process = true
